@@ -3,6 +3,7 @@ import './App.css';
 import Category from "./components/Ticket/Category/Category";
 import Ticket from "./components/Ticket/Ticket";
 import Buy from "./components/Buy/Buy";
+import Alert from "./components/UI/Alert/Alert";
 
 
 const AVAILABLE_CATEGORIES = [
@@ -95,6 +96,13 @@ class App extends Component {
                         total={this.getTotal()}
                     />
                 </Ticket>
+
+                <Alert
+                    type="warning"
+                    dismiss={this.someHandler}
+                >This is a warning type alert</Alert>
+                <Alert type="success">This is a success type alert</Alert>
+
             </div>
     );
     }
