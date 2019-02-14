@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Category from "./components/Ticket/Category/Category";
 import Ticket from "./components/Ticket/Ticket";
+import Buy from "./components/Buy/Buy";
 
 
 const AVAILABLE_CATEGORIES = [
@@ -26,6 +27,9 @@ class App extends Component {
 
             return category;
         });
+
+        this.state.purchasable = true;
+        this.state.purchasing = false;
     };
 
     changeCountTicket = (name, amount) => {
@@ -46,6 +50,18 @@ class App extends Component {
         this.setState(state);
     };
 
+    purchaseHandler = () => {
+        this.setState({purchasing: true});
+    };
+
+    closed = () => {
+        this.setState({purchasing: false});
+    };
+
+    someHandler =() => {
+        alert('Функция вызвана')
+    };
+
 
     getTotal = () => {
         let total = 0;
@@ -56,6 +72,12 @@ class App extends Component {
     };
 
     render() {
+
+        const buttons = [
+            {type: 'primary', label: 'Continue', clicked: this.someHandler},
+            {type: 'danger', label: 'Close', clicked: this.closed}
+        ];
+
         return (
             <div className="container">
                 <Ticket
@@ -64,6 +86,14 @@ class App extends Component {
                     {this.state.categories.map(item => <Category category={item} key={item.name}
                     changeCountTicket={this.changeCountTicket}
                     />)}
+                    <Buy
+                        closed={this.closed}
+                        purchaseHandler={this.purchaseHandler}
+                        modalShow={this.state.purchasing}
+                        tickets={this.state.categories}
+                        buttons={buttons}
+                        total={this.getTotal()}
+                    />
                 </Ticket>
             </div>
     );

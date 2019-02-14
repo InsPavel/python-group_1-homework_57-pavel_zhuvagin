@@ -25,3 +25,24 @@
     font-size: 15px;
     padding: 10px;
 }
+
+.buy_ticket button {
+    margin-right: 10px;
+}
+
+
+.category p{
+    margin-right: 10px;
+}
+
+.close_button {
+    float: right;
+    font-size: 19px;
+    margin: -10px;
+    border: 0;
+    background: none;
+}
+
+.close_button:hover {
+    color: red;
+}
